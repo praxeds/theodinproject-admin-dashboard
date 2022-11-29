@@ -1,0 +1,79 @@
+//Variables
+$color: #FFFF;
+$color1: #eaf4f7;
+$color2: #f7e2c1;
+$color3: #f46f7f;
+$color4: #3f76ed;
+$color5: #97d5f9;
+
+//Mixins
+@mixin grid($columns, $rows, $gap: 0, $justify: start, $align: start) {
+    display: grid;
+    grid-template: $rows / $columns;
+    gap: $gap;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin reset-anchors {
+    text-decoration: none;
+}
+
+@mixin reset-list {
+    @include reset-anchors;
+    list-style: none;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+div.container {
+    min-height: 100vh;
+    @include grid(1fr 4fr, 100%, $align: normal);
+
+    nav {
+        @include grid(100%, 13% 30% 1fr);
+        color: $color;
+        background-color: $color4;
+
+        div#navLogo {
+            @include grid(2fr 5fr, 100%, 0, center, center);
+            align-self: center;
+
+            h2 {
+                font-size: 1.8rem;
+                margin: 0;
+            }
+
+            ion-icon {
+                font-size: 2.5rem;
+            }
+        }
+
+        ul {
+            margin: 0;
+
+            a {
+                @include grid(2fr 5fr, 100%);
+                @include reset-list;
+                margin-bottom: 1rem;
+                color: $color;
+
+                li {
+                    align-self: center;
+                }
+            }
+        }
+
+        ion-icon {
+            margin: 0 auto;
+            font-size: 1.3rem;
+        }
+
+    }
+
+    main {
+        background-color: $color1;
+    }
+}
